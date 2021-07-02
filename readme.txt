@@ -17,5 +17,11 @@ nc2csv.py
 process.py
     ...change id for data seeming sequential as trajectory by id-cast but problematic in lon-lat coords.	
 
+For a trial, you can interpolate testData.csv with the GEBCO 1arcmin topography (GRIDONE_1D.nc, but this data is not uploaded). 
+The result of interpolation is presented in two .png files, in which interpolated positions (green) seem to follow the isobaths.
+(Yellow points are linearly interpolated positions, while not all position-lacking data have linearly interpolated positions by default.)
+
+This scheme is slightly modified from Yamazaki+(2020), such that the "backward revision" for interpolated positions obtained by forwarding interpolation (Fig.A, panels c-d) is replaced with the "weighted average" for the forwarding and backwarding interpolations, with a weighting function defined from inverted distances from the first and last points of the interpolation section. This modification greatly reduces "asymmetry" in interpolated positions, which can result in sharp artificial curves near the end of the interpolation section to connect to the positioned point. By customizing the weighting function and tuning parameters (the length of search range and the searching resolution), you may optimize the scheme for your purpose.
+
 Correspondence: Kaihe Yamazaki (kaiheyamazaki@gmail.com)
 written in 2019 September, modified in 2021 July.
