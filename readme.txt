@@ -17,7 +17,7 @@ nc2csv.py
 process.py
     ...change id for data seeming sequential as trajectory by id-cast but problematic in lon-lat coords.	
 
-For a trial, you can interpolate testData.csv with the GEBCO 1arcmin topography (GRIDONE_1D.nc, but this data is not uploaded). 
+For a trial, you can interpolate testData.csv with the GEBCO 1arcmin topography (GRIDONE_1D.nc, which I can share separately). 
 The result of interpolation is presented in two .png files, in which interpolated positions (green) seem to follow the isobaths.
 (Yellow points are linearly interpolated positions, while not all position-lacking data have linearly interpolated positions by default.)
 
