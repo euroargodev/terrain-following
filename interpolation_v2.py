@@ -14,7 +14,7 @@ by interpolating depths which is determined by the position-known end points of 
 Range = 0.2 # estimate position between +/- 0.2 deg per cycle (length of search range)
 dGrid = 1/60 # grid size of the ambient PV data (deg)
 
-rsl = 2 # resolution of position estimation
+rsl = 1 # resolution of position estimation
 # rsl=1: 1/60 deg, 25 points(finest)
 # rsl=2: 1/30 deg, 13 points
 # rsl=3: 0.05 deg, 9 points
@@ -117,7 +117,7 @@ for idi in ids:
 
         ### define search axis
         fact = np.cos(np.deg2rad((y1+y2)/2))
-        dxf = dx/fact # convert to Cartesian coordinate
+        dxf = dx*fact # convert to Cartesian coordinate
         def searchAxis(x,y,Lon): # this is normal to the trajectry (tangential) axis
             return -dxf/dy*(Lon-x)+y # return latitude
 
@@ -166,7 +166,7 @@ for idi in ids:
 
         ### define search axis
         fact = np.cos(np.deg2rad((y1+y2)/2))
-        dxf = dx/fact # convert to Cartesian coordinate
+        dxf = dx*fact # convert to Cartesian coordinate
         def searchAxis(x,y,Lon): # this is normal to the trajectry (tangential) axis
             return -dxf/dy*(Lon-x)+y # return latitude
 
@@ -197,13 +197,13 @@ for idi in ids:
         ### get the average of forwarding/backwarding intepolations weighting by the distance from the end points
         lonBgn,latBgn = dfi[i_bgn:i_end+1].lons.values[0], dfi[i_bgn:i_end+1].lats.values[0]
         fact = np.cos(np.deg2rad(latBgn))
-        distBgn1 = np.sqrt(((ilons1-lonBgn)/fact)**2 + (ilats1-latBgn)**2)
-        distBgn2 = np.sqrt(((ilons2-lonBgn)/fact)**2 + (ilats2-latBgn)**2)
+        distBgn1 = np.sqrt(((ilons1-lonBgn)*fact)**2 + (ilats1-latBgn)**2)
+        distBgn2 = np.sqrt(((ilons2-lonBgn)*fact)**2 + (ilats2-latBgn)**2)
 
         lonEnd,latEnd = dfi[i_bgn:i_end+1].lons.values[-1],dfi[i_bgn:i_end+1].lats.values[-1]
         fact = np.cos(np.deg2rad(latEnd))
-        distEnd1 = np.sqrt(((ilons1-lonEnd)/fact)**2 + (ilats1-latEnd)**2)
-        distEnd2 = np.sqrt(((ilons2-lonEnd)/fact)**2 + (ilats2-latEnd)**2)
+        distEnd1 = np.sqrt(((ilons1-lonEnd)*fact)**2 + (ilats1-latEnd)**2)
+        distEnd2 = np.sqrt(((ilons2-lonEnd)*fact)**2 + (ilats2-latEnd)**2)
 
         weight1 = 1/distBgn1 + 1/distEnd1 # this shape of weighting function has some arbitrariness...
         weight2 = 1/distBgn2 + 1/distEnd2
