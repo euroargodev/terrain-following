@@ -18,7 +18,7 @@ process.py
     ...change id for data seeming sequential as trajectory by id-cast but problematic in lon-lat coords.	
 
 For a trial, you can interpolate testData.csv with the GEBCO 1arcmin topography (GRIDONE_1D.nc),
-which you may find at: https://drive.google.com/file/d/1eFhJAV4sruQmOC3e4nK-FUJ8e6MJUnPo/view?usp=sharing
+which you may find at: https://drive.google.com/drive/folders/14RizKyM064OsjEo5J0u0RtzdveD_mU-j?usp=sharing
 The result of interpolation is presented in two .png files, in which interpolated positions (green) seem to follow the isobaths.
 (Yellow points are linearly interpolated positions, while not all position-lacking data have linearly interpolated positions by default.)
 
