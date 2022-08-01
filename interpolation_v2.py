@@ -61,8 +61,8 @@ dfs = []
 spans = []
 for idi in ids:
     dfi = df[df.id==idi].sort_values('cast')
-    dfi['ilon']=0.0; dfi['ilat']=0.0 # define interpolated coordinates
-    dfi['span']=0.0
+    dfi['ilon']=np.nan; dfi['ilat']=np.nan # define interpolated coordinates
+    dfi['span']=np.nan
     # 'span' is the length of consecutive cycles to be interpolated
     dfi = dfi.reset_index(drop=True)
 
@@ -215,6 +215,7 @@ for idi in ids:
 
 df = pd.concat(dfs)
 df = df.sort_values(by='id').reset_index(drop=True)
+df.to_csv(path+'/testData_output.csv')
 
 # %% plot interpolated positions
 xx,yy = np.meshgrid(xg[::10],yg[::10])
