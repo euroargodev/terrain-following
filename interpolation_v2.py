@@ -20,7 +20,7 @@ rsl = 1 # resolution of position estimation
 # rsl=3: 0.05 deg, 9 points
 
 ### load trajectry data
-path = r'C:\Users\kaihe\Dropbox\Python\2020_SubpolarGyre\Process\interpolation'
+path = r'' # insert full path to data directory
 df = pd.read_csv(path+'/testData.csv')
 # df.columns --> Index(['Unnamed: 0', 'id', 'cast', 'qpos', 'lons', 'lats', 'juld'], dtype='object')
 # 'qpos' is position quality flag originally named as 'POSITION_QC'
@@ -33,7 +33,7 @@ Here, positions of "position-lacking data" are interpolated following PV contour
 '''
 
 ### install topographic(ambient PV) data
-data = netCDF4.Dataset('C:/Users/kaihe/Desktop/Data/Topography/GEBCO_1arcmin/GRIDONE_1D.nc')
+data = netCDF4.Dataset(path+'/GRIDONE_1D.nc') # edit path
 topo = data.variables['z'][:].reshape(10801,21601)
 dxg = 1/60; xg = np.arange(-180,180+dxg,dxg)# in degree
 dyg = 1/60; yg = np.arange(-90,90+dyg,dyg)
