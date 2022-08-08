@@ -211,10 +211,11 @@ for idi in ids:
         dfi.ilon[i_bgn:i_end+1] = (ilons1*weight1 + ilons2*weight2)/(weight1 + weight2)
         dfi.ilat[i_bgn:i_end+1] = (ilats1*weight1 + ilats2*weight2)/(weight1 + weight2)
 
-    dfs.append(dfi)
+    dfs.append(dfi.sort_values(by='cast'))
 
 df = pd.concat(dfs)
-df = df.sort_values(by='id').reset_index(drop=True)
+df = df.reset_index()
+df = df[['id','cast','qpos','lons','lats','juld','ilon','ilat']]
 df.to_csv(path+'/testData_output.csv')
 
 # %% plot interpolated positions
