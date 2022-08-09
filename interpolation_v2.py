@@ -25,6 +25,19 @@ df = pd.read_csv(path+'/testData.csv')
 # df.columns --> Index(['Unnamed: 0', 'id', 'cast', 'qpos', 'lons', 'lats', 'juld'], dtype='object')
 # 'qpos' is position quality flag originally named as 'POSITION_QC'
 
+# check if lat/lon data are float and insert where is not with nan
+def isNotFloat(string):
+    try:
+        float(string)
+        return False
+    except ValueError:
+        return True
+    
+indx = [isNotFloat(df.lons.values[i]) for i in range(len(df))]
+if len(df.iloc[indx])>1:
+    df.lons.iloc[indx] = np.nan; df.lons = df.lons.astype(float)
+    df.lats.iloc[indx] = np.nan; df.lats = df.lats.astype(float)
+
 '''
 According to the positioning flag attached to each profile, the Argo data were categorized into two groups: "accurately positioned data" and "position-lacking data".
 The former is data with a position quality flag of either 1: "good data" or 2: "probably good data", while the latter is data whose position quality flag is neither 1 nor 2 (without accurate position)
@@ -227,7 +240,7 @@ for idx in np.unique(df.id).astype('int'):
     plt.scatter(df1.lons,df1.lats,c=df1.qpos,s=10,zorder=2); plt.xlabel('lons'); plt.ylabel('lats')
     plt.scatter(df1.ilon,df1.ilat,c='lime',s=10,zorder=2,label='interpolated')
     plt.legend()
-    plt.xlim(82,122); plt.ylim(-66,-55)
+    plt.xlim(df1.lons.min()-5,df1.lons.max()+5); plt.ylim(df1.lats.min()-3,df1.lats.max()+3)
     plt.savefig(path+'/'+str(idx)+'_interpolated.png',dpi=200)
     plt.show()
 
