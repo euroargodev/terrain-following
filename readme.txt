@@ -25,4 +25,4 @@ The result of interpolation is presented in two .png files, in which interpolate
 This scheme is slightly modified from Yamazaki+(2020), such that the "backward revision" for interpolated positions obtained by forwarding interpolation (Fig.A, panels c-d) is replaced with the "weighted average" for the forwarding and backwarding interpolations, with a weighting function defined from inverted distances from the first and last points of the interpolation section. This modification greatly reduces "asymmetry" in interpolated positions, which can result in sharp artificial curves near the end of the interpolation section to connect to the positioned point. By customizing the weighting function and tuning parameters (the length of search range and the searching resolution), you may optimize the scheme for your purpose.
 
 Correspondence: Kaihe Yamazaki (kaiheyamazaki@gmail.com)
-written in 2019 September, modified in 2021 July.
+written in 2019 September, modified in 2022 July.
